@@ -1,0 +1,9 @@
+[submodule "cglm"]
+	path = cglm
+	url = https://github.com/recp/cglm.git
+[submodule "glfw"]
+	path = glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "nuklear"]
+	path = nuklear
+	url = https://github.com/Immediate-Mode-UI/Nuklear.git
