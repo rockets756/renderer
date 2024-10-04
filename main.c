@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 #include "window/window.h"
-#include "window/gui.h"
 #include "rendering/shaders/shaders.h"
 #include "rendering/vbo/vbo.h"
 #include "camera/camera.h"
@@ -38,9 +37,6 @@ int main()
         fprintf(stderr, "Failed to initialize GLAD.\n");
         return -1;
     }
-
-    // Init gui
-    init_gui(window);
 
     // Create and compile shaders
     Shader vertex_shader = {glCreateShader(GL_VERTEX_SHADER), vertexShaderSource};
@@ -125,9 +121,6 @@ int main()
         // Get the time this frame started (used to calculate delta_time at the end)
         timeI = glfwGetTime();
 
-        // Update gui
-        update_gui();
-
         // Update Camera
         update_camera(shaderProgram, delta_time);
 
@@ -140,8 +133,6 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(float));
         glBindVertexArray(0);
 
-        // Render gui
-        render_gui();
 
         // Display frame
         glfwSwapBuffers(window);
@@ -153,15 +144,11 @@ int main()
         delta_time = timeF - timeI;
     }
 
-    // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
     glDeleteVertexArrays(1, &vao.id);
     glDeleteBuffers(1, &vbo.id);
 
     glDeleteProgram(shaderProgram.program_id);
 
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
     glfwTerminate();
     return 0;
 }

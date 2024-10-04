@@ -9,6 +9,8 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
 add_subdirectory(glfw)
 add_subdirectory(cglm)
 
@@ -22,7 +24,7 @@ add_executable(${PROJECT_NAME}
         rendering/shaders/shaders.c rendering/shaders/shaders.h
         rendering/vao/vao.c rendering/vao/vao.h
         rendering/vbo/vbo.c rendering/vbo/vbo.h
-        camera/camera.c camera/camera.h window/gui.c window/gui.h)
+        camera/camera.c camera/camera.h)
 
 target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} ${OPENGL_gl_LIBRARY} ${GLUT_LIBRARIES})
